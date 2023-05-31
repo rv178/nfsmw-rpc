@@ -43,12 +43,13 @@ static void format_details (char* details, char length) {
   if (*OPT_ADDR_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
+  int heat = *(int*)(*HEAT_PTR + 0x68);
   switch (c_mode) {
     case 4: //! - SC: these aren't ascii characters, despite using char variable type?
       sprintf_s(details, length, "Quick Race"); //?! - SC: what the fuck is this!!!!!!!!!!!!!!!!!!!!!!!!!
       break;
     case 1:
-      sprintf_s(details, length, "Career");
+      sprintf_s(details, length, "Career - Heat %s", heat);
       break;
     case 33:
       sprintf_s(details, length, "Customization Shop");
@@ -77,8 +78,8 @@ static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
   details[0] = 0;
 
   while (1) {
-    format_details(details, sizeof(details));
     format_state(state, sizeof(state));
+    format_details(details, sizeof(details));
 
     Discord_UpdatePresence(&discord_presence);
     Discord_RunCallbacks();

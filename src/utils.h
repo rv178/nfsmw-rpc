@@ -3,11 +3,11 @@
 
 /* SC says:
 todo:
-* - get pointers for being in a pursuit when in career
-* -- get pointers for heat level
-* - get pointers for being in circuits, sprints, checkpoints, tollbooths, speedtraps, drag and KOs
-* -- get pointers for lap no. and percent through, updating every few seconds or so
-* - get pointers for general location of player in Rockport
+* - get pointers for being in a pursuit when in career [1]
+* -- get pointers for heat level [X]
+* - get pointers for being in circuits, sprints, checkpoints, tollbooths, speedtraps, drag and KOs [2]
+* -- get pointers for lap no. and percent through, updating every few seconds or so [3]
+* - get pointers for general location of player in Rockport [4]
 ? - SC: where do get these pointers from? i dunno lol
 */
 
