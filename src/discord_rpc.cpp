@@ -53,8 +53,8 @@ static void format_details (char* details, char length) {
     case 33:
       sprintf_s(details, length, "Customization Shop");
       break;
-    default:
-      sprintf_s(details, length, IN_MENU);
+    default: //* - SC: was a bug in 2021 that wictor fixed where customization shop was improperly displayed because it defaults to main menu
+      sprintf_s(details, length, IN_MENU); //? - where did 33 come from, though... must find out
   }
 }
 
