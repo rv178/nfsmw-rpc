@@ -1,4 +1,15 @@
 #include <unordered_map>
+#include <string>
+
+/* SC says:
+todo:
+* - get pointers for being in a pursuit when in career
+* -- get pointers for heat level
+* - get pointers for being in circuits, sprints, checkpoints, tollbooths, speedtraps, drag and KOs
+* -- get pointers for lap no. and percent through, updating every few seconds or so
+* - get pointers for general location of player in Rockport
+? - SC: where do get these pointers from? i dunno lol
+*/
 
 namespace utils {
   const int*  const C_CAR_PTR     = (int*)  0x009BA088;

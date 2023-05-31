@@ -7,7 +7,7 @@
 #include <utils.h>
 
 using namespace std;
-using namespace utils;
+using namespace utils; //SC: in src, has todo
 
 static void format_state (char* state, char length) {
   if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PRT == 0) {
@@ -16,8 +16,8 @@ static void format_state (char* state, char length) {
   }
 
   char c_mode = *(char*)(*OPT_ADDR_PRT + 0x12C);
-  switch (c_mode) {
-    case 1:
+  switch (c_mode) { //? - SC: ?????? what is this
+    case 1: //* - SC: looks like, when referencing 47-57, these are codes for different parts of the game?
     case 4:
     case 33:
       break;
@@ -32,7 +32,7 @@ static void format_state (char* state, char length) {
   const auto car_itr = CAR_TABLE.find(car_name);
 
   if (car_itr != CAR_TABLE.end()) {
-    sprintf_s(state, length, "%s", car_itr->second);
+    sprintf_s(state, length, "%s", car_itr->second); //* - SC: sprintf_s is built into C. hehe, oopsie! focus on format_details and format_state instead
   } else {
     const char* const car_brand = (char*)(car_addr + 0x40);
     sprintf_s(state, length, "%s %s", car_brand, car_name);
