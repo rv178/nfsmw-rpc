@@ -60,8 +60,8 @@ static void format_details (char* details, char length) {
 }
 
 static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
-  char state[64];
-  char details[64];
+  char state[128]; //SC: max these can handle is 128
+  char details[128];
   
   Discord_Initialize(APP_ID, 0, 0, 0);
 
