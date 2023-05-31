@@ -31,7 +31,7 @@ namespace utils {
     {"RX8", "Mazda RX-8"},
     {"RX7", "Mazda RX-7"},
     {"CTS", "Cadillac CTS"},
-    {"MUSTANGGT", " Ford Mustang GT"},
+    {"MUSTANGGT", "Ford Mustang GT"}, //! - SC: spelling error? or critical issue? idk, come back to later
     {"LANCEREVO8", "Mitsubishi Lancer Evolution VIII"},
     {"SL500", "Mercedes-Benz SL 500"},
     {"GTO", "Pontiac GTO"},
@@ -46,7 +46,7 @@ namespace utils {
     {"911TURBO", "Porsche 911 Turbo S"},
     {"CORVETTE", "Chevrolet Corvette"},
     {"MURCIELAGO", "Lamborghini Murciélago"},
-    {"FORDGT", " Ford GT"},
+    {"FORDGT", "Ford GT"}, //* - SC: same as seen in line 34
     {"SLR", "Mercedes-Benz SLR McLaren"},
     {"CARRERAGT", "Porsche Carrera GT"},
     {"BMWM3GTRE46", "BMW M3 GTR"},

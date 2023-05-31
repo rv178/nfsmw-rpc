@@ -44,8 +44,8 @@ static void format_details (char* details, char length) {
 
   char c_mode = *(char*)(*OPT_ADDR_PRT + 0x12C);
   switch (c_mode) {
-    case 4:
-      sprintf_s(details, length, "Quick Race");
+    case 4: //! - SC: these aren't ascii characters, despite using char variable type?
+      sprintf_s(details, length, "Quick Race"); //?! - SC: what the fuck is this!!!!!!!!!!!!!!!!!!!!!!!!!
       break;
     case 1:
       sprintf_s(details, length, "Career");
