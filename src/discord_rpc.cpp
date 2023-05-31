@@ -3,6 +3,9 @@
 #include <windows.h>
 #include <discord_rpc.h>
 
+#include <iostream>
+#include <fstream> //* - SC: gonna have to use these later for debugging
+
 #include <config.h>
 #include <utils.h>
 
@@ -10,7 +13,7 @@ using namespace std;
 using namespace utils; //SC: in src, has todo
 
 static void format_state (char* state, char length) {
-  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PTR == 0) {
+  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PTR == 0 || *HEAT_PTR == 0) {
     state[0] = 0;
     return;
   }
@@ -40,16 +43,18 @@ static void format_state (char* state, char length) {
 }
 
 static void format_details (char* details, char length) {
-  if (*OPT_ADDR_PTR == 0) { return; }
+  if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
-  int heat = *(int*)(*HEAT_PTR + 0x68);
+  int heat = 0;
   switch (c_mode) {
-    case 4: //! - SC: these aren't ascii characters, despite using char variable type?
-      sprintf_s(details, length, "Quick Race"); //?! - SC: what the fuck is this!!!!!!!!!!!!!!!!!!!!!!!!!
+    case 4:
+      sprintf_s(details, length, "Quick Race");
       break;
     case 1:
+      heat = *(int*)(*HEAT_PTR);
       sprintf_s(details, length, "Career - Heat %s", heat);
+      // sprintf_s(details, length, "Career");
       break;
     case 33:
       sprintf_s(details, length, "Customization Shop");
@@ -60,8 +65,8 @@ static void format_details (char* details, char length) {
 }
 
 static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
-  char state[127]; //SC: max these can handle is 128
-  char details[127];
+  char state[64]; //hmm...
+  char details[64];
   
   Discord_Initialize(APP_ID, 0, 0, 0);
 
