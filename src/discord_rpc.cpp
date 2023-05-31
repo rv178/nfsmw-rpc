@@ -10,12 +10,12 @@ using namespace std;
 using namespace utils; //SC: in src, has todo
 
 static void format_state (char* state, char length) {
-  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PRT == 0) {
+  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PTR == 0) {
     state[0] = 0;
     return;
   }
 
-  char c_mode = *(char*)(*OPT_ADDR_PRT + 0x12C);
+  char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
   switch (c_mode) { //? - SC: ?????? what is this
     case 1: //* - SC: looks like, when referencing 47-57, these are codes for different parts of the game?
     case 4:
@@ -40,9 +40,9 @@ static void format_state (char* state, char length) {
 }
 
 static void format_details (char* details, char length) {
-  if (*OPT_ADDR_PRT == 0) { return; }
+  if (*OPT_ADDR_PTR == 0) { return; }
 
-  char c_mode = *(char*)(*OPT_ADDR_PRT + 0x12C);
+  char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
   switch (c_mode) {
     case 4: //! - SC: these aren't ascii characters, despite using char variable type?
       sprintf_s(details, length, "Quick Race"); //?! - SC: what the fuck is this!!!!!!!!!!!!!!!!!!!!!!!!!

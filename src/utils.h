@@ -13,9 +13,13 @@ todo:
 
 namespace utils {
   const int*  const C_CAR_PTR     = (int*)  0x009BA088; //* - SC: CURRENT CAR POINTER
-  const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER(?)
-  const int*  const OPT_ADDR_PRT  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?)
+  const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER(?) (originally PRT... nice lol)
+  const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?)
                                                         //? ^ SC: assumptions based off of name and scheme; not sure where to find these in NFS-VltEd. is correct tool? idk.
+  const int*  const HEAT_PTR      = (int*)  0x00612660; //* - SC: made this; HEAT POINTER
+
+
+
   std::unordered_map<std::string, const char*> CAR_TABLE = {
     {"997S", "Porsche 911 Carrera S"},
     {"IS300", "Lexus IS 300"},
