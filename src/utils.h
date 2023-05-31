@@ -16,8 +16,7 @@ namespace utils {
   const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER(?) 
   const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?) (originally PRT... nice lol)
                                                         //? ^ SC: assumptions based off of name and scheme; not sure where to find these in NFS-VltEd. is correct tool? idk.
-  const int*  const HEAT_PTR      = (int*)  0x00612660; //* - SC: made this; HEAT POINTER... or maybe it's 03ABA4D0?
-  const int*  const EXP_HEAT_PTR  = (int*)  0x03ABA4D0; //! - SC: experimental; try at own risk
+  const int*  const HEAT_PTR      = (int*)  0x00589088; //* - SC: made this; HEAT POINTER -- offset 104
 
 
 
