@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <fstream> //* - SC: gonna have to use these later for debugging
-
+//SC: NFSMW2005 doesn't have proper debugging tools... why? why has EA forsaken us?
 #include <config.h>
 #include <utils.h>
 
@@ -13,7 +13,7 @@ using namespace std;
 using namespace utils; //SC: in src, has todo
 
 static void format_state (char* state, char length) {
-  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PTR == 0 || *HEAT_PTR == 0) {
+  if (*C_CAR_PTR < 0 || *CARS_ADDR_PTR == 0 || *OPT_ADDR_PTR == 0) {
     state[0] = 0;
     return;
   }
@@ -43,7 +43,7 @@ static void format_state (char* state, char length) {
 }
 
 static void format_details (char* details, char length) {
-  if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0) { return; }
+  if (*OPT_ADDR_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
   int heat = 0;
@@ -52,9 +52,10 @@ static void format_details (char* details, char length) {
       sprintf_s(details, length, "Quick Race");
       break;
     case 1:
-      heat = *(int*)(*HEAT_PTR);
-      sprintf_s(details, length, "Career - Heat %s", heat);
-      // sprintf_s(details, length, "Career");
+      //* - SC: below code is using old HEAT_PTR that crashes the game when loaded. i don't have the proper pointers yet. grr.
+      // heat = *(int*)(*HEAT_PTR);
+      // sprintf_s(details, length, "Career - Heat %s", heat);
+      sprintf_s(details, length, "Career");
       break;
     case 33:
       sprintf_s(details, length, "Customization Shop");

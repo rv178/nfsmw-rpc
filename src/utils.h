@@ -16,8 +16,9 @@ namespace utils {
   const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER(?) 
   const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?) (originally PRT... nice lol)
                                                         //? ^ SC: assumptions based off of name and scheme; not sure where to find these in NFS-VltEd. is correct tool? idk.
-  const int*  const HEAT_PTR      = (int*)  0x00612660; //* - SC: made this; HEAT POINTER(?) (taken from NFSMWExOpts)
-
+                                                        //* ^^^^^ bigger brain SC: Cheat Engine can locate pointers and save them -- learn to use them!
+  //// const int*  const HEAT_PTR      = (int*)  0x00612660; //* - SC: made this; HEAT POINTER(?) (taken from NFSMWExOpts)
+  //! ^ - SC: DO NOT USE. these will crash the game; improper pointers. delete later!
 
 
   std::unordered_map<std::string, const char*> CAR_TABLE = {
@@ -50,7 +51,7 @@ namespace utils {
     {"911TURBO", "Porsche 911 Turbo S"},
     {"CORVETTE", "Chevrolet Corvette"},
     {"MURCIELAGO", "Lamborghini Murciélago"},
-    {"FORDGT", "Ford GT"}, //* - SC: same as seen in line 34
+    {"FORDGT", "Ford GT"}, //* - SC: same as seen in line 34. unsure if there's a bug with RPC that causes this
     {"SLR", "Mercedes-Benz SLR McLaren"},
     {"CARRERAGT", "Porsche Carrera GT"},
     {"BMWM3GTRE46", "BMW M3 GTR"},
