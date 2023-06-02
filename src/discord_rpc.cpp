@@ -43,24 +43,23 @@ static void format_state (char* state, char length) {
 }
 
 static void format_details (char* details, char length) {
-  if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0) { return; }
+  if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0 || *PURSUIT_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
-  
-  int rpc_heat_ptr = *HEAT_PTR;
-  rpc_heat_ptr += 0x104; //SC: offset
-  int* heat_ptr = (int*)rpc_heat_ptr;
   int heat = 0;
-  
+  int in_pursuit = 0;
+
   switch (c_mode) {
     case 4:
       sprintf_s(details, length, "Quick Race");
       break;
     case 1:
       //* - SC: adjusted, hopefully it works now
-      heat = *heat_ptr;
-      sprintf_s(details, length, "Career - Heat %d", heat);
-      // sprintf_s(details, length, "Career");
+      heat = *(int*) (*HEAT_PTR+0x104);
+      in_pursuit = *(int*) (*PURSUIT_PTR+0x100);
+      if (in_pursuit == 1) {
+        sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);
+      } else {sprintf_s(details, length, "Career");}
       break;
     case 33:
       sprintf_s(details, length, "Customization Shop");
@@ -70,11 +69,23 @@ static void format_details (char* details, char length) {
   }
 }
 
+//* - SC: use below for debugging
+// void initConsole() {
+//   if (AllocConsole()) {
+//     FILE* fDummy;
+//     freopen_s(&fDummy, "CONIN$", "r", stdin);
+//     freopen_s(&fDummy, "CONOUT$", "w", stderr);
+//     freopen_s(&fDummy, "CONOUT$", "w", stdout);
+//   }
+// }
+
 static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
   char state[64]; //* - SC: these are best left untouched according to original modder
   char details[64]; //* - SC: 128 bytes /is/ a lot, after all...
   
   Discord_Initialize(APP_ID, 0, 0, 0);
+  // initConsole();
+  std::cout << "-- NSFWMW_RPC - SC --\nFrom here on out, console outputs are by NSFMW_RPC-SC.\nI know what I'm doing, I swear. Debug only." << std::endl;
 
   DiscordRichPresence discord_presence;
   memset(&discord_presence, 0, sizeof(discord_presence));
