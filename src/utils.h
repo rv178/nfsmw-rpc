@@ -17,9 +17,7 @@ namespace utils {
   const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?) (originally PRT... nice lol)
                                                         //? ^ SC: assumptions based off of name and scheme; not sure where to find these in NFS-VltEd. is correct tool? idk.
                                                         //* ^^^^^ bigger brain SC: Cheat Engine can locate pointers and save them -- learn to use them!
-  //// const int*  const HEAT_PTR      = (int*)  0x00612660; //* - SC: made this; HEAT POINTER(?) (taken from NFSMWExOpts)
-  //! ^ - SC: DO NOT USE. these will crash the game; improper pointers. delete later!
-
+  const int*  const HEAT_PTR      = (int*)  0x00989088; //* - SC: made this; HEAT POINTER
 
   std::unordered_map<std::string, const char*> CAR_TABLE = {
     {"997S", "Porsche 911 Carrera S"},
