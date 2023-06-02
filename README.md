@@ -1,13 +1,14 @@
-# NFSMW-RPC <sup>*WIP-SC*</sup>
-
+# NFSMW-RPC
+<sub>~~(i'm not the original creator but i am in touch with the person who made it so yeah)~~</sub>
 A mod that adds Discord Rich Presence integration to Need for Speed: Most Wanted (2005).  
 
-<img src="assets/presence.png">  
+<img src="assets/presence-old.png">
+<img src="assets/presence.png>
 
 ## Installation
 
-1. Install ASI loader.
-2. ~~Get the latest version [here](https://github.com/wictornogueira/nfsmw-rpc/releases/latest/download/nfsmw-rpc.zip).~~ Unavailable rn sorry -SC
-3. Extract all files to your game directory.
+1. Install [ASI loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v4.68/Ultimate-ASI-Loader.zip).
+2. Get the latest version [here](https://github.com/Jay-the-Creator/nfsmw-rpc/releases/download/releases/nsfmw-rpc.rar).
+3. Extract all files to your game directory. (nfsmw-rpc.zip -extract=> Need For Speed Most Wanted)
 
 Logo by [TripleZet](https://www.deviantart.com/triplezet).
