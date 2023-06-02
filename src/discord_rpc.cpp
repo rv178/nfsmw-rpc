@@ -59,7 +59,7 @@ static void format_details (char* details, char length) {
     case 1:
       //* - SC: adjusted, hopefully it works now
       heat = *heat_ptr;
-      sprintf_s(details, length, "Career - Heat %s", heat);
+      sprintf_s(details, length, "Career - Heat %d", heat);
       // sprintf_s(details, length, "Career");
       break;
     case 33:
