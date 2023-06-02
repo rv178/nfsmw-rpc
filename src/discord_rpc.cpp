@@ -3,9 +3,8 @@
 #include <windows.h>
 #include <discord_rpc.h>
 
-#include <iostream>
-#include <fstream> //* - SC: gonna have to use these later for debugging
-//SC: NFSMW2005 doesn't have proper debugging tools... why? why has EA forsaken us?
+#include <iostream> //* - SC: used for debugging with a terminal, see line 68 
+
 #include <config.h>
 #include <utils.h>
 
@@ -19,8 +18,8 @@ static void format_state (char* state, char length) {
   }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
-  switch (c_mode) { //? - SC: ?????? what is this
-    case 1: //* - SC: looks like, when referencing 47-57, these are codes for different parts of the game?
+  switch (c_mode) {
+    case 1:
     case 4:
     case 33:
       break;
@@ -35,7 +34,7 @@ static void format_state (char* state, char length) {
   const auto car_itr = CAR_TABLE.find(car_name);
 
   if (car_itr != CAR_TABLE.end()) {
-    sprintf_s(state, length, "%s", car_itr->second); //* - SC: sprintf_s is built into C. hehe, oopsie! focus on format_details and format_state instead
+    sprintf_s(state, length, "%s", car_itr->second);
   } else {
     const char* const car_brand = (char*)(car_addr + 0x40);
     sprintf_s(state, length, "%s %s", car_brand, car_name);
@@ -46,18 +45,15 @@ static void format_details (char* details, char length) {
   if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0 || *PURSUIT_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
-  int heat = 0;
-  int in_pursuit = 0;
+  int heat = *(int*) (*HEAT_PTR+0x104);
+  bool in_pursuit = *(int*) (*PURSUIT_PTR+0x100);
 
   switch (c_mode) {
     case 4:
       sprintf_s(details, length, "Quick Race");
       break;
     case 1:
-      //* - SC: adjusted, hopefully it works now
-      heat = *(int*) (*HEAT_PTR+0x104);
-      in_pursuit = *(int*) (*PURSUIT_PTR+0x100);
-      if (in_pursuit == 1) {
+      if (in_pursuit == true) {
         sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);
       } else {sprintf_s(details, length, "Career");}
       break;
@@ -85,7 +81,8 @@ static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
   
   Discord_Initialize(APP_ID, 0, 0, 0);
   // initConsole();
-  std::cout << "-- NSFWMW_RPC - SC --\nFrom here on out, console outputs are by NSFMW_RPC-SC.\nI know what I'm doing, I swear. Debug only." << std::endl;
+  //* - SC: lol, edit below to what you like, i don't care
+  // std::cout << "-- NSFWMW_RPC - SC --\nFrom here on out, console outputs are by NSFMW_RPC-SC.\nI know what I'm doing, I swear. Debug only." << std::endl;
 
   DiscordRichPresence discord_presence;
   memset(&discord_presence, 0, sizeof(discord_presence));
