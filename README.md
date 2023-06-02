@@ -2,7 +2,7 @@
 A mod that adds Discord Rich Presence integration to Need for Speed: Most Wanted (2005).  
 
 <img src="assets/presence-old.png">
-<img src="assets/presence.png>
+<img src="assets/presence.png">
 
 ## Installation
 
