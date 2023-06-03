@@ -54,7 +54,8 @@ static void format_details (char* details, char length) {
       break;
     case 1:
       if (in_pursuit == true) {
-        sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);
+        if (heat > 0 && heat <= 10) {sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);}
+        else {sprintf_s(details, length, "Career");} //! - SC: we've likely ran into an error with these memory addresses, default to Career
       } else {sprintf_s(details, length, "Career");}
       break;
     case 33:

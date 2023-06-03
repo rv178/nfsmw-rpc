@@ -3,8 +3,6 @@
 
 /* SC says:
 todo:
-* - get pointers for being in a pursuit when in career [X]
-* -- get pointers for heat level [X]
 * - get pointers for being in circuits, sprints, checkpoints, tollbooths, speedtraps, drag and KOs [2]
 * -- get pointers for lap no. and percent through, updating every few seconds or so [1]
 * - get pointers for general location of player in Rockport [3]
@@ -12,10 +10,8 @@ todo:
 
 namespace utils {
   const int*  const C_CAR_PTR     = (int*)  0x009BA088; //* - SC: CURRENT CAR POINTER
-  const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER(?) 
-  const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER (?) (originally PRT... nice lol)
-                                                        //? ^ SC: assumptions based off of name and scheme; not sure where to find these in NFS-VltEd. is correct tool? idk.
-                                                        //* ^^^^^ bigger brain SC: Cheat Engine can locate pointers and save them -- learn to use them!
+  const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER
+  const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER
   const int*  const HEAT_PTR      = (int*)  0x00989088; //* - SC: HEAT POINTER
   const int*  const PURSUIT_PTR    = (int*) 0x009303EC; //* - SC: PURSUIT POINTER, 0 if not in pursuit, 1 if in
 
