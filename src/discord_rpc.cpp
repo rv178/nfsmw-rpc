@@ -51,7 +51,7 @@ static void format_details (char* details, char length) {
   bool in_safehouse = *SAFEHOUSE_PTR;
   bool in_race = *IN_RACE_PTR;
 
-  char type[64]; //todo - SC: type for pause menu
+  char type[64];
 
   if (paused == false) {
     switch (c_mode) {
