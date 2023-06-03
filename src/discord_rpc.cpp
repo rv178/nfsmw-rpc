@@ -47,22 +47,45 @@ static void format_details (char* details, char length) {
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
   int heat = *(int*) (*HEAT_PTR+0x104);
   bool in_pursuit = *(int*) (*PURSUIT_PTR+0x100);
+  bool paused = *PAUSED_PTR;
+  bool in_safehouse = *SAFEHOUSE_PTR;
+  bool in_race = *IN_RACE_PTR;
 
-  switch (c_mode) {
-    case 4:
-      sprintf_s(details, length, "Quick Race");
-      break;
-    case 1:
-      if (in_pursuit == true) {
-        if (heat > 0 && heat <= 10) {sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);}
-        else {sprintf_s(details, length, "Career");} //! - SC: we've likely ran into an error with these memory addresses, default to Career
-      } else {sprintf_s(details, length, "Career");}
-      break;
-    case 33:
-      sprintf_s(details, length, "Customization Shop");
-      break;
-    default: //* - SC: was a bug in 2021 that wictor fixed where customization shop was improperly displayed because it defaults to main menu
-      sprintf_s(details, length, IN_MENU); //? - where did 33 come from, though... must find out
+  char type[64]; //todo - SC: type for pause menu
+
+  if (paused == false) {
+    switch (c_mode) {
+      case 1:
+        if (in_pursuit == true) {
+          if (heat > 0 && heat <= 10) {sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);}
+          else {sprintf_s(details, length, "Career - In Safe House");} //! - SC: we've likely ran into an error with these memory addresses, but not fatal -- default to Career - In Safe House
+        } else if (in_safehouse) {sprintf_s(details, length, "Career - In Safe House");
+        } else if (in_race) {sprintf_s(details, length, "Career - In A Race");}
+        else {sprintf_s(details, length, "Career - Free Roaming");}
+        break;
+      case 2:
+        //todo - SC: add challenge series number
+        sprintf_s(details, length, "Challenge Series");
+        break;
+      case 4:
+        sprintf_s(details, length, "Quick Race");
+        break;
+      case 33:
+        sprintf_s(details, length, "Customization Shop");
+        break;
+      default:
+        sprintf_s(details, length, IN_MENU);
+    }
+  } else {
+      switch (c_mode) {
+        case 1: strcpy(type, "Career"); break; //* - SC: https://stackoverflow.com/questions/6008733/expression-must-be-a-modifiable-l-value
+        case 2: strcpy(type, "Challenge Series"); break;
+        case 4: strcpy(type, "Quick Race"); break;
+        case 33:
+        default:
+          strcpy(type, "Career"); //! - SC: if we get to this, good chance we're fucked, default to career
+      }
+      sprintf_s(details, length, "Paused - %s", type);
   }
 }
 

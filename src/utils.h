@@ -13,7 +13,11 @@ namespace utils {
   const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER
   const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER
   const int*  const HEAT_PTR      = (int*)  0x00989088; //* - SC: HEAT POINTER
-  const int*  const PURSUIT_PTR    = (int*) 0x009303EC; //* - SC: PURSUIT POINTER, 0 if not in pursuit, 1 if in
+  const int*  const PURSUIT_PTR   = (int*)  0x009303EC; //* - SC: PURSUIT POINTER, 0 if not in pursuit, 1 if in
+  const int*  const PAUSED_PTR    = (int*)  0x0091CAE4; //* - SC: PAUSED POINTER, 0 if not paused, 1 if paused, !! no offset !!
+  const int*  const SAFEHOUSE_PTR = (int*)  0x008F40C8; //* - SC: SAFEHOUSE POINTER, 0 if not in safehouse, 1 if in, !! no offset !!
+  const int*  const IN_RACE_PTR   = (int*)  0x009136A8; //* - SC: PLAYER IN RACE POINTER, 0 if not in a race, 1 if in race, !! no offset !!
+
 
   std::unordered_map<std::string, const char*> CAR_TABLE = {
     {"997S", "Porsche 911 Carrera S"},
