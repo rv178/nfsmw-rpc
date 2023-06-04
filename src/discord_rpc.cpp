@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <discord_rpc.h>
 
-#include <iostream> //* - SC: used for debugging with a terminal, see line 68 
+#include <iostream> //* - SC: used for debugging with a terminal, see line 94
 
 #include <config.h>
 #include <utils.h>
@@ -45,18 +45,20 @@ static void format_details (char* details, char length) {
   if (*OPT_ADDR_PTR == 0 || *HEAT_PTR == 0 || *PURSUIT_PTR == 0) { return; }
 
   char c_mode = *(char*)(*OPT_ADDR_PTR + 0x12C);
-  int heat = *(int*) (*HEAT_PTR+0x104);
+
+  //* - SC: career pointers + variables
   bool in_pursuit = *(int*) (*PURSUIT_PTR+0x100);
-  bool paused = *PAUSED_PTR;
+  int heat = *(int*) (*HEAT_PTR+0x104);
   bool in_safehouse = *SAFEHOUSE_PTR;
   bool in_race = *IN_RACE_PTR;
+  bool paused = *PAUSED_PTR;
 
   char type[64];
 
   if (paused == false) {
     switch (c_mode) {
       case 1:
-        if (in_pursuit == true) {
+        if (in_pursuit) { //* - SC: priority is as follows: in_pursuit -> in_safehouse -> in_race -> freeroam
           if (heat > 0 && heat <= 10) {sprintf_s(details, length, "IN PURSUIT! - Heat %d", heat);}
           else {sprintf_s(details, length, "Career - In Safe House");} //! - SC: we've likely ran into an error with these memory addresses, but not fatal -- default to Career - In Safe House
         } else if (in_safehouse) {sprintf_s(details, length, "Career - In Safe House");
@@ -100,8 +102,8 @@ static void format_details (char* details, char length) {
 // }
 
 static DWORD WINAPI ThreadEntry (LPVOID lpParam) {
-  char state[64]; //* - SC: these are best left untouched according to original modder
-  char details[64]; //* - SC: 128 bytes /is/ a lot, after all...
+  char state[64];
+  char details[64];
   
   Discord_Initialize(APP_ID, 0, 0, 0);
   // initConsole();

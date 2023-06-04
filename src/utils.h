@@ -12,6 +12,8 @@ namespace utils {
   const int*  const C_CAR_PTR     = (int*)  0x009BA088; //* - SC: CURRENT CAR POINTER
   const int*  const CARS_ADDR_PTR = (int*)  0x009B09D8; //* - SC: CARS ADDRESSES POINTER
   const int*  const OPT_ADDR_PTR  = (int*)  0x0091CF90; //* - SC: OPTIONS ADDRESSES POINTER
+
+  //* CAREER POINTERS *
   const int*  const HEAT_PTR      = (int*)  0x00989088; //* - SC: HEAT POINTER
   const int*  const PURSUIT_PTR   = (int*)  0x009303EC; //* - SC: PURSUIT POINTER, 0 if not in pursuit, 1 if in
   const int*  const PAUSED_PTR    = (int*)  0x0091CAE4; //* - SC: PAUSED POINTER, 0 if not paused, 1 if paused, !! no offset !!
@@ -19,7 +21,7 @@ namespace utils {
   const int*  const IN_RACE_PTR   = (int*)  0x009136A8; //* - SC: PLAYER IN RACE POINTER, 0 if not in a race, 1 if in race, !! no offset !!
 
 
-  std::unordered_map<std::string, const char*> CAR_TABLE = {
+  std::unordered_map<std::string, const char*> CAR_TABLE = { //todo - SC: addon-car support
     {"997S", "Porsche 911 Carrera S"},
     {"IS300", "Lexus IS 300"},
     {"PUNTO", "Fiat Grande Punto"},
@@ -34,7 +36,7 @@ namespace utils {
     {"RX8", "Mazda RX-8"},
     {"RX7", "Mazda RX-7"},
     {"CTS", "Cadillac CTS"},
-    {"MUSTANGGT", "Ford Mustang GT"}, //! - SC: spelling error? or critical issue? idk, come back to later
+    {"MUSTANGGT", "Ford Mustang GT"},
     {"LANCEREVO8", "Mitsubishi Lancer Evolution VIII"},
     {"SL500", "Mercedes-Benz SL 500"},
     {"GTO", "Pontiac GTO"},
@@ -49,7 +51,7 @@ namespace utils {
     {"911TURBO", "Porsche 911 Turbo S"},
     {"CORVETTE", "Chevrolet Corvette"},
     {"MURCIELAGO", "Lamborghini Murciélago"},
-    {"FORDGT", "Ford GT"}, //* - SC: same as seen in line 34. unsure if there's a bug with RPC that causes this
+    {"FORDGT", "Ford GT"},
     {"SLR", "Mercedes-Benz SLR McLaren"},
     {"CARRERAGT", "Porsche Carrera GT"},
     {"BMWM3GTRE46", "BMW M3 GTR"},
